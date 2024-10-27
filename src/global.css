@@ -1,0 +1,24 @@
+:root {
+    --orange: #ed6b11;
+    --light-orange: #fe9925;
+    --brown: #49260f;
+    --white: #ebebec;
+    --blue: #0F8DEB;
+    --green: #2ada25;
+    --black: #272727;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--white);
+}
+
+body, input, textarea, button {
+    font-size: 1rem;
+    font-family: sans-serif;
+}
