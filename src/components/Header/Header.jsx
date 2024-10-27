@@ -1,13 +1,11 @@
 import style from './Header.module.css';
 
-const Header = (props) => {
-
-    const { name } = props;
-
+const Header = () => {
+    
     return (
         <div className={style.Header}>
             <h1>
-                {name}
+                Owl in One
             </h1>
         </div>
     );
