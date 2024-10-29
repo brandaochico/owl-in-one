@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../../firebase'; // Importando a instância do Firebase
+import { auth } from '../../firebase.js'; // Importando a instância do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
 import './LoginPage.css';
@@ -80,4 +80,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export { LoginPage };

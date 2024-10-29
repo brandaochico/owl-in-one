@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc, collection, getDocs, addDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
 import { useNavigate } from 'react-router-dom'; 
-import CreateLesson from '../../components/CreateLesson/CreateLesson';
+import { CreateLesson } from '../../components';
 import './HomeProfessor.css'; 
 
 const HomeProfessor = () => {
@@ -180,4 +180,4 @@ const HomeProfessor = () => {
   );
 };
 
-export default HomeProfessor;
+export { HomeProfessor };

@@ -78,4 +78,4 @@ const CourseDetail = () => {
   );
 };
 
-export default CourseDetail;
+export { CourseDetail };

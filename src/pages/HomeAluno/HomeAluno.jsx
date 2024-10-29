@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
 import { useNavigate } from 'react-router-dom'; 
@@ -66,4 +66,4 @@ const HomeAluno = () => {
   );
 };
 
-export default HomeAluno;
+export { HomeAluno };

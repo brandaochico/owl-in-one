@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase.js';
 
 const CreateLesson = ({ courseId, onLessonCreated }) => {
   const [lessonName, setLessonName] = useState('');
@@ -78,4 +78,4 @@ const CreateLesson = ({ courseId, onLessonCreated }) => {
   );
 };
 
-export default CreateLesson;
+export { CreateLesson };

@@ -57,4 +57,4 @@ const CreateCourse = ({ onCourseCreated }) => {
   );
 };
 
-export default CreateCourse;
+export { CreateCourse };
