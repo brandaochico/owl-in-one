@@ -1,0 +1,56 @@
+.home-professor-container {
+  padding: 20px;
+}
+
+.create-course-button,
+.logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-course-button:hover,
+.logout-button:hover {
+  background-color: #45a049;
+}
+
+.create-course-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-course-form input,
+.create-course-form textarea {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.course-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.course-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  width: 200px; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h3 {
+  margin: 0 0 10px;
+}
+
+.course-card p {
+  margin: 0;
+}

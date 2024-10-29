@@ -1,5 +1,0 @@
-const PageNotFound = () => {
-
-};
-
-export { PageNotFound };

@@ -1,0 +1,12 @@
+.home-aluno-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.home-aluno-container h2 {
+  margin-bottom: 10px;
+}
+
+.home-aluno-container .error {
+  color: red;
+}
