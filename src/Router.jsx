@@ -1,13 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
+
+import { Template } from './layouts';
+
 import { LoginPage, HomeAluno, HomeProfessor, RegisterPage } from './pages';
 
 const Router = () => {
     return (
       <Routes>
-        <Route exact path="/" element={<LoginPage />} />
-        <Route path="/HomeAluno" element={<HomeAluno />} />
-        <Route path="/HomeProfessor" element={<HomeProfessor />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<Template />}>
+            <Route exact path="/" element={<LoginPage />} />
+            <Route exact path="/HomeAluno" element={<HomeAluno />} />
+            <Route exact path="/HomeProfessor" element={<HomeProfessor />} />
+            <Route exact path="/register" element={<RegisterPage />} />
+          </Route>
       </Routes>
     );
 };

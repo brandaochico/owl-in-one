@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFirestore, doc, getDoc, collection, getDocs, updateDoc } from 'firebase/firestore';
-import CreateLesson from '../../components/CreateLesson/CreateLesson';
+import { CreateLesson } from '../../components/CreateLesson/CreateLesson';
 
 const CourseDetail = () => {
   const { courseId } = useParams();
