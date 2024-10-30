@@ -1,44 +1,64 @@
-/* src/LoginPage.css */
-.login-container {
+.container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+}
+
+.left {
+    background: var(--white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right {
+    background: var(--dark-orange);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
-  .login-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .login-form {
-    display: flex;
     flex-direction: column;
-    width: 300px;
-  }
-  
-  .login-form input {
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .login-form button {
-    padding: 10px;
-    background-color: #bb352b;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  .login-form button:hover {
-    background-color: #dd2c2c;
-  }
-  
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 5.5rem 3rem;
+    border-radius: 0.5rem;
+}
+
+input {
+    padding: 1.25rem 1rem;
+    border-radius: 0.45rem;
+    width: 115%;
+    background: var(--pale-orange);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.45rem;
+    background: var(--dark-blue);
+}
+
+button, input::placeholder, input{
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--white);
+}
+
+p {
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--black);
+}

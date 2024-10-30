@@ -1,12 +1,15 @@
 import style from './Header.module.css';
+import logo from '../../assets/logo.jpeg';
+import { Placeholder } from '../Placeholder';
+import { SearchBar } from '../SearchBar';
 
 const Header = () => {
     
     return (
         <div className={style.Header}>
-            <h1>
-                Owl in One
-            </h1>
+            <img src={logo} id="logo" />
+            <SearchBar />
+            <Placeholder />
         </div>
     );
 

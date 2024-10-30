@@ -1,9 +1,12 @@
 :root {
     --orange: #ed6b11;
     --light-orange: #fe9925;
+    --dark-orange: #d34905;
+    --pale-orange: #db703c;
     --brown: #49260f;
-    --white: #ebebec;
+    --white: #ffffff;
     --blue: #0F8DEB;
+    --dark-blue: #01184e;
     --green: #2ada25;
     --black: #272727;
 }
@@ -19,6 +22,5 @@ body {
 }
 
 body, input, textarea, button {
-    font-size: 0.5rem;
     font-family: sans-serif;
 }

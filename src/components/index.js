@@ -5,3 +5,6 @@ export * from './CreateLesson';
 export * from './Content';
 export * from './Header';
 export * from './Footer';
+export * from  './SearchBar';
+
+export * from './Placeholder';

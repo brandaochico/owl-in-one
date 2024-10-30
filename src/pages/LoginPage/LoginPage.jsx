@@ -4,6 +4,7 @@ import { auth } from '../../firebase.js'; // Importando a instância do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
 import './LoginPage.css';
+import logo from '../../assets/logo.jpeg';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -50,33 +51,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleLogin} className="login-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Carregando...' : 'Login'}
-        </button>
-      </form>
-      <p>
-        Não tem uma conta?{' '}
-        <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
-      </p>
+    <div className="container">
+      <div className="left">
+        <img src={logo}></img>
+      </div>
+      <div className="right">
+        <form onSubmit={handleLogin} className="login-form">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? 'Carregando...' : 'Login'}
+          </button>
+          <p>
+          Não tem uma conta?{' '}
+          <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
+          </p>
+        </form>
+      </div>
     </div>
+    // <div className="login-container">
+    //   <h2>Login</h2>
+    //   {error && <p className="error">{error}</p>}
+      
+    // </div>
   );
 };
 
