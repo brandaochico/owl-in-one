@@ -1,6 +1,6 @@
 .SearchBar {
-    background: var(--pale-orange);
     width: 40%;
     border-radius: 5rem;
     padding: 0.25rem;
+    border: 1.5px solid var(--black);
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import { auth } from '../../firebase.js';
-import './CreateCourse.css';
+import style from './CreateCourse.module.css';
 
 const CreateCourse = () => {
     const [courseName, setCourseName] = useState('');
@@ -33,7 +33,7 @@ const CreateCourse = () => {
     };
 
     return (
-        <div className="create-course-container">
+        <div className={style.CreateCourse}>
             <h2>Criar Curso</h2>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
