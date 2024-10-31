@@ -3,6 +3,7 @@ import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
 import { useNavigate } from 'react-router-dom'; 
+import { Header } from '../../components'; 
 import './HomeAluno.css'; 
 
 const HomeAluno = () => {
@@ -57,11 +58,12 @@ const HomeAluno = () => {
 
   return (
     <div className="home-aluno-container">
+      <Header /> 
       <h2>Bem-vindo, {userInfo?.name}</h2>
       <p>Email: {auth.currentUser.email}</p>
       <p>Tipo de usuário: {userInfo?.userType}</p>
 
-      <button onClick={handleLogout} className="logout-button">Logout</button> {/* Botão de logout */}
+      <button onClick={handleLogout} className="logout-button">Logout</button>
     </div>
   );
 };

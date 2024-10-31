@@ -5,11 +5,11 @@ import { Header, Content, Footer } from '../../components';
 const Template = () => {
     return (
         <>
-        <Header />
+            <Header />
             <Content>
                 <Outlet />
             </Content>
-        <Footer />
+            <Footer />
         </>
     );
 };

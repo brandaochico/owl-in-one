@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.js'; // Importando a instância do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
+import { Footer } from '../../components';
 import './LoginPage.css';
 import logo from '../../assets/logo.jpg';
 
@@ -53,7 +54,7 @@ const LoginPage = () => {
   return (
     <div className="container">
       <div className="left">
-        <img src={logo}></img>
+        <img src={logo} alt="Logo" />
       </div>
       <div className="right">
         <form onSubmit={handleLogin} className="login-form">
@@ -75,17 +76,14 @@ const LoginPage = () => {
             {isLoading ? 'Carregando...' : 'Login'}
           </button>
           <p>
-          Não tem uma conta?{' '}
-          <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
+            Não tem uma conta?{' '}
+            <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
           </p>
         </form>
+        {error && <p className="error">{error}</p>}
       </div>
+      <Footer />
     </div>
-    // <div className="login-container">
-    //   <h2>Login</h2>
-    //   {error && <p className="error">{error}</p>}
-      
-    // </div>
   );
 };
 
