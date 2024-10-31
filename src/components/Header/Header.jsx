@@ -32,7 +32,6 @@ const Header = ({ userType }) => {
         <div className={style.Header}>
             <img src={logo} id="logo" alt="Logo" />
             <SearchBar />
-            <Placeholder />
             <div className={style.buttonsContainer}>
                 {userType === 'professor' && (
                     <button onClick={handleCreateCourse}>Criar Curso</button>

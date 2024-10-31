@@ -69,4 +69,4 @@ const CreateCourse = () => {
     );
 };
 
-export default CreateCourse;
+export { CreateCourse };
