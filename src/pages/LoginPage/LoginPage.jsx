@@ -53,7 +53,7 @@ const LoginPage = () => {
   return (
     <div className="container">
       <div className="left">
-        <img src={logo}></img>
+        <img src={logo} alt="Logo" />
       </div>
       <div className="right">
         <form onSubmit={handleLogin} className="login-form">
@@ -75,17 +75,13 @@ const LoginPage = () => {
             {isLoading ? 'Carregando...' : 'Login'}
           </button>
           <p>
-          Não tem uma conta?{' '}
-          <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
+            Não tem uma conta?{' '}
+            <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
           </p>
         </form>
+        {error && <p className="error">{error}</p>}
       </div>
     </div>
-    // <div className="login-container">
-    //   <h2>Login</h2>
-    //   {error && <p className="error">{error}</p>}
-      
-    // </div>
   );
 };
 
