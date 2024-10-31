@@ -1,5 +1,5 @@
 import style from './Header.module.css';
-import logo from '../../assets/logo.jpeg';
+import logo from '../../assets/logo.jpg';
 import { Placeholder } from '../Placeholder';
 import { SearchBar } from '../SearchBar';
 

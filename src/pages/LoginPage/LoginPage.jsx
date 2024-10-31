@@ -4,7 +4,7 @@ import { auth } from '../../firebase.js'; // Importando a instância do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
 import './LoginPage.css';
-import logo from '../../assets/logo.jpeg';
+import logo from '../../assets/logo.jpg';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
