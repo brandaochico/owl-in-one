@@ -1,9 +1,9 @@
-.container {
+.LoginPage {
     display: flex;
     justify-content: center;
 }
 
-.left {
+.LoginPage .left {
     background: var(--white);
     position: absolute;
     top: 0;
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.right {
+.LoginPage .right {
     background: var(--pale-orange);
     position: absolute;
     top: 0;
@@ -23,46 +23,11 @@
     width: 50%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 1.5rem;
-    background: var(--white);
-    padding: 5.5rem 3rem;
-    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
-input {
-    padding: 1.25rem 1rem;
-    border-radius: 0.45rem;
-    width: 115%;
-    background: var(--pale-orange);
-}
-
-button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.45rem;
-    background: var(--dark-blue);
-}
-
-button, input::placeholder, input{
-    font-size: 12pt;
-    font-weight: bold;
-    color: var(--white);
-}
-
-p {
-    font-size: 12pt;
-    font-weight: bold;
-    color: var(--black);
-}
-
-img {
+.LoginPage img {
     width: 50%;
 }

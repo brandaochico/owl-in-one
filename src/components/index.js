@@ -2,6 +2,7 @@
 export { default as Content } from './Content/Content';
 export { default as Header } from './Header/Header';
 export { default as Footer } from './Footer/Footer';
+export { default as FormLogin } from './FormLogin/FormLogin';
 
 // Funcionalidades
 export { default as CreateCourse } from './CreateCourse/CreateCourse';

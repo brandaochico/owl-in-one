@@ -1,0 +1,35 @@
+.FormLogin form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 5.5rem 3rem;
+    border-radius: 0.5rem;
+}
+
+.FormLogin input {
+    padding: 1.25rem 1rem;
+    border-radius: 0.45rem;
+    width: 115%;
+    background: var(--pale-orange);
+}
+
+.FormLogin button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.45rem;
+    background: var(--dark-blue);
+}
+
+.FormLogin button, input::placeholder, input{
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.FormLogin p {
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--black);
+}
