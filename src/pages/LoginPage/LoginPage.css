@@ -16,7 +16,7 @@
 }
 
 .right {
-    background: var(--dark-orange);
+    background: var(--pale-orange);
     position: absolute;
     top: 0;
     right: 0;

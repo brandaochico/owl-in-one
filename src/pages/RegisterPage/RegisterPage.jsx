@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { auth } from '../../firebase.js'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import './RegisterPage.css';
 
 const RegisterPage = () => {
@@ -15,10 +15,11 @@ const RegisterPage = () => {
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const db = getFirestore();
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       setError('As senhas não coincidem.');
       return;
@@ -29,23 +30,24 @@ const RegisterPage = () => {
     setSuccess(''); 
 
     try {
-      // Cria o usuário
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Armazena o tipo de usuário no Firestore
       await setDoc(doc(db, 'users', user.uid), {
         name, 
         userType: userType,
       });
 
       setSuccess('Usuário cadastrado com sucesso!');
-      // Limpar os campos após o registro
       setName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
       setUserType('aluno');
+
+      navigate('/')
+
+
     } catch (error) {
       setError(error.message);
     } finally {
