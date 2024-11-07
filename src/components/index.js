@@ -7,4 +7,6 @@ export * from './Header';
 export * from './Footer';
 export * from  './SearchBar';
 
+export * from './Flyer';
+
 export * from './Placeholder';

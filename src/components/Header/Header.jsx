@@ -1,7 +1,7 @@
 // src/components/Header.js
 import React from 'react';
 import style from './Header.module.css';
-import logo from '../../assets/logo.jpeg';
+import logo from '../../assets/logo.jpg';
 import { Placeholder } from '../Placeholder';
 import { SearchBar } from '../SearchBar';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,6 @@ const Header = ({ userType }) => {
         <div className={style.Header}>
             <img src={logo} id="logo" alt="Logo" />
             <SearchBar />
-            <Placeholder />
             <div className={style.buttonsContainer}>
                 {userType === 'professor' && (
                     <button onClick={handleCreateCourse}>Criar Curso</button>

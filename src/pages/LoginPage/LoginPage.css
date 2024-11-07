@@ -62,3 +62,7 @@ p {
     font-weight: bold;
     color: var(--black);
 }
+
+img {
+    width: 50%;
+}

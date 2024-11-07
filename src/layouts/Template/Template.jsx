@@ -5,6 +5,7 @@ import { Header, Content, Footer } from '../../components';
 const Template = () => {
     return (
         <>
+            <Header />
             <Content>
                 <Outlet />
             </Content>

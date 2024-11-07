@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.js'; // Importando a instância do Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
+import { Footer } from '../../components';
 import './LoginPage.css';
-import logo from '../../assets/logo.jpeg';
+import logo from '../../assets/logo.jpg';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -81,6 +82,7 @@ const LoginPage = () => {
         </form>
         {error && <p className="error">{error}</p>}
       </div>
+      <Footer />
     </div>
   );
 };
