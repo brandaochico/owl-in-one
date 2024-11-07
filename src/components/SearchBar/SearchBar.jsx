@@ -1,4 +1,7 @@
+// Estilos
 import style from './SearchBar.module.css';
+
+// Componentes
 import { SearchIcon } from '../../assets';
 
 const SearchBar = () => {
@@ -9,4 +12,4 @@ const SearchBar = () => {
     );
 };
 
-export { SearchBar };
+export default SearchBar;

@@ -1,12 +1,12 @@
-export * from './CourseDetail';
-export * from './CreateCourse';
-export * from './CreateLesson';
+// Conteúdo
+export { default as Content } from './Content/Content';
+export { default as Header } from './Header/Header';
+export { default as Footer } from './Footer/Footer';
 
-export * from './Content';
-export * from './Header';
-export * from './Footer';
-export * from  './SearchBar';
+// Funcionalidades
+export { default as CreateCourse } from './CreateCourse/CreateCourse';
+export { default as SearchBar } from './SearchBar/SearchBar';
 
-export * from './Flyer';
+//PlaceHolder
+export { default as Placeholder } from './Placeholder/Placeholder';
 
-export * from './Placeholder';

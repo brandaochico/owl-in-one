@@ -1,10 +1,17 @@
+// React
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
+// DB
 import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
-import { useNavigate } from 'react-router-dom'; 
-import { Header } from '../../components'; 
-import './HomeAluno.css'; 
+
+// Estilos
+import style from './HomeAluno.module.css';
+
+// Componentes
+import { Header } from '../../components';
 
 const HomeAluno = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -68,4 +75,4 @@ const HomeAluno = () => {
   );
 };
 
-export { HomeAluno };
+export default HomeAluno;

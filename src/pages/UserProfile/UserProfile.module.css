@@ -1,6 +1,4 @@
-/* UserProfile.css */
-
-.user-profile-container {
+.userProfileContainer {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -10,13 +8,13 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-profile-container h2 {
+.userProfileContainer h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-.user-profile-container input {
+.input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -25,7 +23,7 @@
     font-size: 16px;
 }
 
-.user-profile-container button {
+.button {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -37,7 +35,7 @@
     cursor: pointer;
 }
 
-.user-profile-container button:hover {
+.button:hover {
     background-color: #0056b3; /* Cor do botão ao passar o mouse */
 }
 

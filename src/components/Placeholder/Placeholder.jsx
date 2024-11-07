@@ -1,3 +1,4 @@
+// Estilos
 import style from './Placeholder.module.css';
 
 const Placeholder = () => {
@@ -8,4 +9,4 @@ const Placeholder = () => {
     );
 };
 
-export { Placeholder };
+export default Placeholder;

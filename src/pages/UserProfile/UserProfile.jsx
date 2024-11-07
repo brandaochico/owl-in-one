@@ -1,8 +1,13 @@
+// React
 import React, { useEffect, useState } from 'react';
+
+// DB
 import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { updateEmail, updatePassword } from 'firebase/auth';
-import './UserProfile.css';
+
+// Estilos
+import style from './UserProfile.module.css';
 
 const UserProfile = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -83,11 +88,11 @@ const UserProfile = () => {
   }
 
   if (error) {
-    return <p className="error">{error}</p>;
+    return <p className={style.error}>{error}</p>;
   }
 
   return (
-    <div className="user-profile-container">
+    <div className={style.userProfileContainer}>
       <h2>Perfil do Usuário</h2>
       {isEditing ? (
         <div>
@@ -98,6 +103,7 @@ const UserProfile = () => {
             onChange={handleChange}
             placeholder="Nome"
             required
+            className={style.input}
           />
           <input
             type="email"
@@ -106,6 +112,7 @@ const UserProfile = () => {
             onChange={handleChange}
             placeholder="Email"
             required
+            className={style.input}
           />
           <input
             type="password"
@@ -113,19 +120,20 @@ const UserProfile = () => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Nova Senha (deixe em branco para não alterar)"
+            className={style.input}
           />
-          <button onClick={handleSave}>Salvar</button>
-          <button onClick={handleEditToggle}>Cancelar</button>
+          <button onClick={handleSave} className={style.button}>Salvar</button>
+          <button onClick={handleEditToggle} className={style.button}>Cancelar</button>
         </div>
       ) : (
         <div>
           <p>Nome: {userInfo?.name}</p>
           <p>Email: {auth.currentUser.email}</p>
-          <button onClick={handleEditToggle}>Editar</button>
+          <button onClick={handleEditToggle} className={style.button}>Editar</button>
         </div>
       )}
     </div>
   );
 };
 
-export { UserProfile };
+export default UserProfile;

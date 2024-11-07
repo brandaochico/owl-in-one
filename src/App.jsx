@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Router } from './Router.jsx';
 
-import './App.css'
+import style from './App.module.css';
 
 const App = () => {
 
@@ -15,4 +15,4 @@ const App = () => {
 
 };
 
-export { App };
+export default App;

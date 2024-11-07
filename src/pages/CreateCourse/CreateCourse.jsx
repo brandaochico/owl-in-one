@@ -1,6 +1,11 @@
+// React
 import React, { useState } from 'react';
+
+// DB
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import { auth } from '../../firebase.js';
+
+// Estilos
 import style from './CreateCourse.module.css';
 
 const CreateCourse = () => {
@@ -69,4 +74,4 @@ const CreateCourse = () => {
     );
 };
 
-export { CreateCourse };
+export default CreateCourse;

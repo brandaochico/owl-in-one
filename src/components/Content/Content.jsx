@@ -12,4 +12,4 @@ const Content = (props) => {
 
 };
 
-export { Content };
+export default Content;

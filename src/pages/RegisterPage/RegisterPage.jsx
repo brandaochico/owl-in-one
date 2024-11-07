@@ -1,9 +1,14 @@
+// React
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// DB
 import { auth } from '../../firebase.js'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
-import { Link, useNavigate } from 'react-router-dom'; 
-import './RegisterPage.css';
+
+// Estilos
+import style from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -45,7 +50,7 @@ const RegisterPage = () => {
       setConfirmPassword('');
       setUserType('aluno');
 
-      navigate('/')
+      navigate('/');
 
 
     } catch (error) {
@@ -56,11 +61,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className={style.registerContainer}>
       <h2>Cadastro</h2>
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
-      <form onSubmit={handleRegister} className="register-form">
+      {error && <p className={style.error}>{error}</p>}
+      {success && <p className={style.success}>{success}</p>}
+      <form onSubmit={handleRegister} className={style.registerForm}>
         <input
           type="text"
           placeholder="Nome"
@@ -90,7 +95,7 @@ const RegisterPage = () => {
           required
         />
         
-        <div className="user-type">
+        <div className={style.userType}>
           <label>
             <input 
               type="radio" 
@@ -117,10 +122,10 @@ const RegisterPage = () => {
       </form>
       <p>
         Já tem uma conta?{' '}
-        <Link to="/" className="login-link">Faça login aqui</Link>
+        <Link to="/" className={style.loginLink}>Faça login aqui</Link>
       </p>
     </div>
   );
 };
 
-export { RegisterPage };
+export default RegisterPage;

@@ -1,5 +1,8 @@
+// React
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
+
+// DB
 import { getFirestore } from 'firebase/firestore';
 
 const CreateCourse = ({ onCourseCreated }) => {
@@ -12,7 +15,6 @@ const CreateCourse = ({ onCourseCreated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Adicionando o curso ao Firestore
       await addDoc(collection(db, 'cursos'), {
         name: courseName,
         description: courseDescription,
@@ -57,4 +59,4 @@ const CreateCourse = ({ onCourseCreated }) => {
   );
 };
 
-export { CreateCourse };
+export default CreateCourse;

@@ -1,19 +1,26 @@
+// React
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase.js'; // Importando a instância do Firebase
-import { signInWithEmailAndPassword } from 'firebase/auth'; // Importando o método de login
-import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importando Firestore
-import { Footer } from '../../components';
-import './LoginPage.css';
+
+// DB
+import { auth } from '../../firebase.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+
+// Estilos
+import style from './LoginPage.module.css';
 import logo from '../../assets/logo.jpg';
+
+// Componentes
+import { Footer } from '../../components';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(''); 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate(); // Usando o hook para navegação
-  const db = getFirestore(); // Inicializando Firestore
+  const navigate = useNavigate();
+  const db = getFirestore();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,14 +28,11 @@ const LoginPage = () => {
     setError('');
 
     try {
-      // Realiza o login
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       
-      // Obtém o tipo de usuário do Firestore
       const userType = await getUserType(user.uid);
       
-      // Redireciona com base no tipo de usuário
       if (userType === 'aluno') {
         navigate('/HomeAluno');
       } else if (userType === 'professor') {
@@ -41,23 +45,22 @@ const LoginPage = () => {
     }
   };
 
-  // Função para obter o tipo de usuário do Firestore
   const getUserType = async (userId) => {
-    const userDoc = await getDoc(doc(db, 'users', userId)); // Busca o documento do usuário
+    const userDoc = await getDoc(doc(db, 'users', userId));
     if (userDoc.exists()) {
-      return userDoc.data().userType; // Retorna o tipo de usuário
+      return userDoc.data().userType;
     } else {
       throw new Error('Usuário não encontrado');
     }
   };
 
   return (
-    <div className="container">
-      <div className="left">
+    <div className={style.container}>
+      <div className={style.left}>
         <img src={logo} alt="Logo" />
       </div>
-      <div className="right">
-        <form onSubmit={handleLogin} className="login-form">
+      <div className={style.right}>
+        <form onSubmit={handleLogin} className={style.loginForm}>
           <input
             type="email"
             placeholder="Email"
@@ -77,14 +80,14 @@ const LoginPage = () => {
           </button>
           <p>
             Não tem uma conta?{' '}
-            <Link to="/Register" className="register-link">Cadastre-se aqui</Link>
+            <Link to="/Register" className={style.registerLink}>Cadastre-se aqui</Link>
           </p>
         </form>
-        {error && <p className="error">{error}</p>}
+        {error && <p className={style.error}>{error}</p>}
       </div>
-      <Footer />
+        <Footer />
     </div>
   );
 };
 
-export { LoginPage };
+export default LoginPage;

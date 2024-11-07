@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Header, Content, Footer } from '../../components';
 
-const Template = () => {
+const MainLayout = () => {
     return (
         <>
             <Header />
@@ -14,4 +14,4 @@ const Template = () => {
     );
 };
 
-export { Template };
+export default MainLayout;

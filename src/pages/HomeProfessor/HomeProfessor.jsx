@@ -1,11 +1,18 @@
+// React
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
+// DB
 import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
-import { useNavigate } from 'react-router-dom'; 
-import { Header } from '../../components'; 
-import './HomeProfessor.css';
+
+// Estilos
+import style from './HomeProfessor.module.css';
 import logo from '../../assets/logo.jpg';
+
+// Componentes
+import { Header } from '../../components';
 
 const HomeProfessor = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -79,7 +86,6 @@ const HomeProfessor = () => {
     <div className="home-professor-container">
       <Header userType={userInfo?.userType} />
       <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        {/* Banner de boas-vindas */}
         <div style={{ backgroundColor: 'var(--pale-orange)', padding: '30px', borderRadius: '8px', color: 'white', textAlign: 'center' }}>
           <h1>Bem-vindo à Owl in One!</h1>
           <p>Amplie seus horizontes,</p>
@@ -87,7 +93,6 @@ const HomeProfessor = () => {
           <button onClick={handleLogout} style={{ marginTop: '10px', padding: '10px 20px', backgroundColor: '#fff', color: '#4A90E2', borderRadius: '5px', border: 'none', cursor: 'pointer' }}>Sair</button>
         </div>
 
-        {/* Sessão de Cursos Populares */}
         <section style={{ marginTop: '40px' }}>
           <h2>Cursos Populares</h2>
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
@@ -101,7 +106,6 @@ const HomeProfessor = () => {
           </div>
         </section>
 
-        {/* Sessão dos Cursos do Professor */}
         <section style={{ marginTop: '40px' }}>
           <h2>Meus Cursos</h2>
           {courses.length > 0 ? (
@@ -124,4 +128,4 @@ const HomeProfessor = () => {
   );
 };
 
-export { HomeProfessor };
+export default HomeProfessor;

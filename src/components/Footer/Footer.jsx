@@ -1,3 +1,4 @@
+// Estilos
 import style from './Footer.module.css';
 
 const Footer = () => {
@@ -10,4 +11,4 @@ const Footer = () => {
 
 };
 
-export { Footer };
+export default Footer;

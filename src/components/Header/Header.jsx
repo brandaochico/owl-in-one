@@ -1,12 +1,17 @@
-// src/components/Header.js
+//React
 import React from 'react';
-import style from './Header.module.css';
-import logo from '../../assets/logo.jpg';
-import { Placeholder } from '../Placeholder';
-import { SearchBar } from '../SearchBar';
 import { useNavigate } from 'react-router-dom';
+
+// DB
 import { auth } from '../../firebase.js';
 import { signOut } from 'firebase/auth';
+
+//Estilos
+import style from './Header.module.css';
+import logo from '../../assets/logo.jpg';
+
+// Componentes
+import { SearchBar } from '../../components';
 
 const Header = ({ userType }) => {
     const navigate = useNavigate();
@@ -43,4 +48,4 @@ const Header = ({ userType }) => {
     );
 };
 
-export { Header };
+export default Header;
