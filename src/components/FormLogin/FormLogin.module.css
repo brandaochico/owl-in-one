@@ -13,19 +13,24 @@
     padding: 1.25rem 1rem;
     border-radius: 0.45rem;
     width: 115%;
-    background: var(--pale-orange);
+    background: var(--white);
+    border: 1px solid var(--black)
 }
 
 .FormLogin button {
     padding: 0.75rem 1.5rem;
     border-radius: 0.45rem;
     background: var(--dark-blue);
-}
-
-.FormLogin button, input::placeholder, input{
+    border: 1px solid var(--black);
+    color: var(--white);
     font-size: 12pt;
     font-weight: bold;
-    color: var(--white);
+}
+
+.FormLogin input::placeholder, input{
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--black);
 }
 
 .FormLogin p {
