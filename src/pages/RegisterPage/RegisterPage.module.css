@@ -8,7 +8,7 @@
 }
 
 .RegisterPage h2 {
-  font-size: 30pt;
+  font-size: 40pt;
   font-weight: bolder;
   margin-bottom: 20px;
   color: var(--white);
@@ -16,5 +16,10 @@
 
 .RegisterPage p {
   font-weight: bold;
+  color: var(--white);
   margin-top: 1rem;
+}
+
+.RegisterPage button {
+  cursor: pointer;
 }
