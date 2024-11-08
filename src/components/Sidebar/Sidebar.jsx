@@ -24,10 +24,13 @@ const Sidebar = ({ userType }) => {
         }
       };
 
-    // MEXER AQUI PARA REDIRECIONAR CERTO
     const handleHome = () => {
-        navigate('/')
-    };
+      if (userType === 'aluno') {
+        navigate('/HomeAluno');
+      } else if (userType === 'professor') {
+        navigate('/HomeProfessor');
+      }
+    }
 
     const handleUserProfile = () => {
         navigate('/user')

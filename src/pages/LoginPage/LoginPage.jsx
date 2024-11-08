@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
-// Firebase
-import { auth } from '../../firebase.js';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 // Estilos
 import style from './LoginPage.module.css';
