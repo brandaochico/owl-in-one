@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 // DB
 import { auth } from '../../firebase.js';
@@ -16,6 +16,7 @@ const MainLayout = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const db = getFirestore();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -31,7 +32,7 @@ const MainLayout = () => {
                         setError('Usuário não encontrado.');
                     }
                 } else {
-                    setError('Usuário não está autenticado.');
+                    navigate('/');
                 }
             } catch (err) {
                 setError('Erro ao carregar informações do usuário: ' + err.message);

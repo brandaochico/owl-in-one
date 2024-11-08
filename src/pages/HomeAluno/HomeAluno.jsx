@@ -46,15 +46,6 @@ const HomeAluno = () => {
     fetchUserInfo();
   }, [db]);
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth); 
-      navigate('/');
-    } catch (err) {
-      setError('Erro ao deslogar: ' + err.message);
-    }
-  };
-
   if (loading) {
     return <p>Carregando informações...</p>;
   }
@@ -65,12 +56,8 @@ const HomeAluno = () => {
 
   return (
     <div className="home-aluno-container">
-      <Header /> 
       <h2>Bem-vindo, {userInfo?.name}</h2>
-      <p>Email: {auth.currentUser.email}</p>
       <p>Tipo de usuário: {userInfo?.userType}</p>
-
-      <button onClick={handleLogout} className="logout-button">Logout</button>
     </div>
   );
 };

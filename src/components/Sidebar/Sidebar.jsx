@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 // DB
 import { auth } from '../../firebase.js';
-import { getFirestore } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; 
 
 // Estilos
