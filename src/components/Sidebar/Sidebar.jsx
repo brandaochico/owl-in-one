@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth';
 
 // Estilos
 import styles from './Sidebar.module.css';
+import { HomeIcon, UserIcon, CourseIcon, LogoutIcon } from '../../assets';
 
 
 
@@ -43,12 +44,20 @@ const Sidebar = ({ userType }) => {
     <div className={styles.sidebar}>
       <h2 className={styles.title}>Menu</h2>
       <ul className={styles.menuList}>
-        <li className={styles.menuItem} onClick={handleHome}>Home</li>
-        <li className={styles.menuItem} onClick={handleUserProfile}>Usuário</li>
+        <li className={styles.menuItem} onClick={handleHome}>
+          <HomeIcon/> Home
+        </li>
+        <li className={styles.menuItem} onClick={handleUserProfile}>
+          <UserIcon /> Usuário
+        </li>
         {userType === 'professor' && (
-                    <li className={styles.menuItem} onClick={handleCreateCourse}>Criar Curso</li>
+                    <li className={styles.menuItem} onClick={handleCreateCourse}>
+                      <CourseIcon /> Criar Curso
+                    </li>
         )}
-        <li className={styles.menuItem} onClick={handleLogout}>Logout</li>
+        <li className={styles.menuItem} onClick={handleLogout}>
+          <LogoutIcon /> Logout
+        </li>
       </ul>
     </div>
   );
