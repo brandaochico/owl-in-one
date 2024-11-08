@@ -10,9 +10,6 @@ import { signOut } from 'firebase/auth';
 import style from './HomeProfessor.module.css';
 import logo from '../../assets/logo.jpg';
 
-// Componentes
-import { Header, Sidebar } from '../../components';
-
 const HomeProfessor = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,7 +26,7 @@ const HomeProfessor = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const user = auth.currentUser; 
+        const user = auth.currentUser;
         if (user) {
           const docRef = doc(db, 'users', user.uid);
           const docSnap = await getDoc(docRef);
@@ -105,21 +102,26 @@ const HomeProfessor = () => {
 
       <section className={style.section}>
         <h2>Meus Cursos</h2>
-        {courses.length > 0 ? (
-          <ul>
-            {courses.map(course => (
-              <li key={course.id} className={style.courseListItem}>
-                <h4>{course.name}</h4>
+        <div className={style.courseContainer}>
+          {courses.length > 0 ? (
+            courses.map(course => (
+              <div
+                key={course.id}
+                className={style.courseCard}
+                onClick={() => navigate(`/curso/${course.id}`)}
+              >
+                <img src={logo} alt={course.name} className={style.courseImage} />
+                <h3>{course.name}</h3>
                 <p>{course.description}</p>
-                <p>Duração: {course.duration} horas</p>
-                <p>Tags: {course.tags.join(', ')}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Você ainda não criou nenhum curso.</p>
-        )}
+                <p> <spam className={style.tags}>Tags: {course.tags.join(', ')} </spam></p>
+              </div>
+            ))
+          ) : (
+            <p>Você ainda não criou nenhum curso.</p>
+          )}
+        </div>
       </section>
+
     </div>
   );
 };

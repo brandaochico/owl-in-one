@@ -56,3 +56,45 @@
 .errorMessage {
   color: red;
 }
+
+.courseContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.courseCard {
+  width: 300px;
+  padding: 15px;
+  background-color: var(--white);
+  border: 1px solid var(--dark-blue);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.courseCard:hover {
+  transform: scale(1.05);
+}
+
+.courseImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.courseCard h3 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.courseCard p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: var(--dark-blue);
+}
+
+.tags {
+  font-weight: bold;
+}

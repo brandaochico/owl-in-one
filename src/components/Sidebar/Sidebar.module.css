@@ -1,6 +1,6 @@
 .sidebar {
   width: 300px;
-  height: 100vh;
+  height: 200vh;
   background-color: var(--pale-orange);
   color: #ecf0f1;
   margin-top: 30px;
@@ -21,7 +21,7 @@
 
 .menuItem {
   display: flex;
-  align-items: center; /* Alinha os ícones com o texto verticalmente */
+  align-items: center;
   margin: 0.5rem 0;
   padding: 0.5rem;
   cursor: pointer;

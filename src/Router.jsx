@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { MainLayout } from './layouts';
 import { LoginPage, HomeAluno, HomeProfessor, RegisterPage } from './pages';
-import { CreateCourse, UserProfile } from './pages';
+import { CreateCourse, UserProfile, CourseDetails } from './pages';
 
 const Router = () => {
     return (
@@ -14,6 +14,7 @@ const Router = () => {
             <Route exact path="/HomeProfessor" element={<HomeProfessor />} />
             <Route exact path="/user" element={<UserProfile />} />
             <Route exact path="/create-course" element={<CreateCourse />} />
+            <Route exact path="/curso/:id" element={<CourseDetails />} />
         </Route>
       </Routes>
     );
