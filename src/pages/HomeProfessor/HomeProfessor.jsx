@@ -79,7 +79,7 @@ const HomeProfessor = () => {
               <div
                 key={course.id}
                 className={style.courseCard}
-                onClick={() => navigate(`/curso/${course.id}`)}
+                onClick={() => navigate(`/curso-details/${course.id}`)}
               >
                 <img src={logo} alt={course.name} className={style.courseImage} />
                 <h3>{course.name}</h3>
