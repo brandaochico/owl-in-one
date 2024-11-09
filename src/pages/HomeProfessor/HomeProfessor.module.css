@@ -1,34 +1,25 @@
 .homeProfessorContainer {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-
-.welcomeSection {
-  background-color: var(--pale-orange);
-  padding: 30px;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-}
-
-.logoutButton {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #fff;
-  color: #4A90E2;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+  font-family: Arial, sans-serif; 
 }
 
 .section {
   margin-top: 40px;
 }
 
+.section h2 {
+  margin-left: 20px;
+  font-size: 2rem;
+  color: var(--dark-blue);
+}
+
 .courseContainer {
   display: flex;
   gap: 20px;
   margin-top: 20px;
+  padding: 20px;
+  background-color: #ddd;
+  border-top: 0.5px var(--dark-blue) solid;
+  border-bottom: 0.5px var(--dark-blue) solid;
 }
 
 .courseCard {

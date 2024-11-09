@@ -11,7 +11,7 @@ import { signOut } from 'firebase/auth';
 import style from './HomeAluno.module.css';
 
 // Componentes
-import { Header } from '../../components';
+import { Banner } from '../../components';
 
 const HomeAluno = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -55,9 +55,8 @@ const HomeAluno = () => {
   }
 
   return (
-    <div className="home-aluno-container">
-      <h2>Bem-vindo, {userInfo?.name}</h2>
-      <p>Tipo de usuário: {userInfo?.userType}</p>
+    <div className="homeAlunoContainer">
+      <Banner />
     </div>
   );
 };
