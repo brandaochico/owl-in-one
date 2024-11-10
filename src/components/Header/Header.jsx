@@ -13,37 +13,12 @@ import logo from '../../assets/logo.jpg';
 // Componentes
 import { SearchBar } from '../../components';
 
-const Header = ({ userType }) => {
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            navigate('/');
-        } catch (error) {
-            console.error('Erro ao deslogar: ', error.message);
-        }
-    };
-
-    const handleUserProfile = () => {
-        navigate('/user');
-    };
-
-    const handleCreateCourse = () => {
-        navigate('/create-course'); 
-    };
+const Header = () => {
 
     return (
         <div className={style.Header}>
             <img src={logo} id="logo" alt="Logo" />
             <SearchBar />
-            <div className={style.buttonsContainer}>
-                {userType === 'professor' && (
-                    <button onClick={handleCreateCourse}>Criar Curso</button>
-                )}
-                <button onClick={handleUserProfile}>Usuário</button>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
         </div>
     );
 };

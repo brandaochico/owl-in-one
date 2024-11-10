@@ -1,35 +1,36 @@
 // React
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 // DB
 import { auth } from '../../firebase.js';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { signOut } from 'firebase/auth'; 
+import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 
 // Estilos
 import style from './HomeAluno.module.css';
+import logo from '../../assets/logo.jpg';
 
 // Componentes
-import { Header } from '../../components';
+import { Banner } from '../../components';
 
 const HomeAluno = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [courses, setCourses] = useState([]);
   const db = getFirestore();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         const user = auth.currentUser;
         if (user) {
-          const docRef = doc(db, 'users', user.uid); 
-          const docSnap = await getDoc(docRef); 
+          const docRef = doc(db, 'users', user.uid);
+          const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
-            setUserInfo(docSnap.data()); 
+            setUserInfo(docSnap.data());
           } else {
             setError('Usuário não encontrado.');
           }
@@ -43,16 +44,25 @@ const HomeAluno = () => {
       }
     };
 
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'cursos'));
+        const coursesList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCourses(coursesList);
+      } catch (err) {
+        setError('Erro ao carregar cursos: ' + err.message);
+      }
+    };
+
     fetchUserInfo();
+    fetchCourses();
   }, [db]);
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth); 
-      navigate('/');
-    } catch (err) {
-      setError('Erro ao deslogar: ' + err.message);
-    }
+  const handleCourseClick = (courseId) => {
+    navigate(`/course-details/${courseId}`);
   };
 
   if (loading) {
@@ -64,13 +74,29 @@ const HomeAluno = () => {
   }
 
   return (
-    <div className="home-aluno-container">
-      <Header /> 
-      <h2>Bem-vindo, {userInfo?.name}</h2>
-      <p>Email: {auth.currentUser.email}</p>
-      <p>Tipo de usuário: {userInfo?.userType}</p>
-
-      <button onClick={handleLogout} className="logout-button">Logout</button>
+    <div className={style.homeAlunoContainer}>
+      <Banner />
+      <section className={style.section}>
+        <h2>Cursos</h2>
+        <div className={style.courseContainer}>
+          {courses.length > 0 ? (
+            courses.map(course => (
+              <div
+                key={course.id}
+                className={style.courseCard}
+                onClick={() => navigate(`/curso/${course.id}`)}
+              >
+                <img src={logo} alt={course.name} className={style.courseImage} />
+                <h3>{course.name}</h3>
+                <p>{course.description}</p>
+                <p> <spam className={style.tags}>Tags: {course.tags.join(', ')} </spam></p>
+              </div>
+            ))
+          ) : (
+            <p>Você ainda não criou nenhum curso.</p>
+          )}
+        </div>
+      </section>
     </div>
   );
 };

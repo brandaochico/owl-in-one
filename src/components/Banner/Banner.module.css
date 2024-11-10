@@ -1,0 +1,40 @@
+.welcomeSection {
+    position: relative;
+    background-image: url('../../assets/banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px;
+    margin: 20px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .welcomeSection h1 {
+    font-weight: bolder;
+    font-size: 3rem;
+    color: var(--white);
+  }
+  
+  .welcomeSection p {
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+  
+  .welcomeSection button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .welcomeSection button:hover {
+    background-color: var(--blue);
+  }

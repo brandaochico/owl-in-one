@@ -4,6 +4,8 @@ export { default as Header } from './Header/Header';
 export { default as Footer } from './Footer/Footer';
 export { default as FormLogin } from './FormLogin/FormLogin';
 export { default as FormRegister } from './FormRegister/FormRegister';
+export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as Banner } from './Banner/Banner';
 
 // Funcionalidades
 export { default as CreateCourse } from './CreateCourse/CreateCourse';

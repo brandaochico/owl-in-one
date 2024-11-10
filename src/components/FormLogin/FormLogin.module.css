@@ -38,3 +38,7 @@
     font-weight: bold;
     color: var(--black);
 }
+
+.error {
+    color: red;
+}
