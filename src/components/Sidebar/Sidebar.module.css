@@ -8,7 +8,7 @@
   flex-direction: column;
   z-index: 10;
   width: 20%;
-  transition: display 0.3s ease;
+  transition: display 0.5s ease;
 }
 
 .title {
@@ -22,6 +22,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  width: inherit;
 }
 
 .menuItem {

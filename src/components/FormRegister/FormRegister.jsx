@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { auth } from '../../firebase.js'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -116,6 +116,10 @@ const FormRegister = () => {
           {isLoading ? 'Cadastrando...' : 'Cadastrar'}
         </button>
       </form>
+      <p>
+        Já tem uma conta?{' '}
+        <Link to="/" className={style.loginLink}>Faça login aqui</Link>
+      </p>
       </div>
     );
 }

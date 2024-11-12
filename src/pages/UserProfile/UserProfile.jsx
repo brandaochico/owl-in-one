@@ -6,14 +6,17 @@ import { auth } from '../../firebase.js';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { updateEmail, updatePassword } from 'firebase/auth';
 
+// Componentes
+import { EditButton } from '../../components';
+
 // Estilos
 import style from './UserProfile.module.css';
 
 const UserProfile = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const db = getFirestore();
 
@@ -52,35 +55,35 @@ const UserProfile = () => {
     setIsEditing(!isEditing);
   };
 
+  const handleSave = async () => {
+    try {
+        const user = auth.currentUser;
+        if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        await updateDoc(docRef, { name: formData.name });
+        
+        if (formData.email !== user.email) {
+            await updateEmail(user, formData.email);
+        }
+        
+        if (formData.password) {
+            await updatePassword(user, formData.password);
+        }
+
+        setUserInfo({ ...userInfo, name: formData.name });
+        setIsEditing(false);
+        }
+    } catch (err) {
+        setError('Erro ao salvar informações: ' + err.message);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-  };
-
-  const handleSave = async () => {
-    try {
-      const user = auth.currentUser;
-      if (user) {
-        const docRef = doc(db, 'users', user.uid);
-        await updateDoc(docRef, { name: formData.name });
-        
-        if (formData.email !== user.email) {
-          await updateEmail(user, formData.email);
-        }
-        
-        if (formData.password) {
-          await updatePassword(user, formData.password);
-        }
-
-        setUserInfo({ ...userInfo, name: formData.name });
-        setIsEditing(false);
-      }
-    } catch (err) {
-      setError('Erro ao salvar informações: ' + err.message);
-    }
   };
 
   if (loading) {
@@ -93,7 +96,7 @@ const UserProfile = () => {
 
   return (
     <div className={style.userProfileContainer}>
-      <h2>Perfil do Usuário</h2>
+      <h2>Meu Perfil</h2>
       {isEditing ? (
         <div>
           <input
@@ -123,13 +126,13 @@ const UserProfile = () => {
             className={style.input}
           />
           <button onClick={handleSave} className={style.button}>Salvar</button>
-          <button onClick={handleEditToggle} className={style.button}>Cancelar</button>
+          <EditButton handleEditToggle={handleEditToggle} text="Cancelar"></EditButton> 
         </div>
       ) : (
         <div>
+          <EditButton handleEditToggle={handleEditToggle} text="Editar"></EditButton>
           <p>Nome: {userInfo?.name}</p>
           <p>Email: {auth.currentUser.email}</p>
-          <button onClick={handleEditToggle} className={style.button}>Editar</button>
         </div>
       )}
     </div>

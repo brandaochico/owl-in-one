@@ -11,6 +11,7 @@ export { default as Logo } from './Logo/Logo';
 // Funcionalidades
 export { default as CreateCourse } from './CreateCourse/CreateCourse';
 export { default as SearchBar } from './SearchBar/SearchBar';
+export { default as EditButton } from './EditButton/EditButton';
 
 //PlaceHolder
 export { default as Placeholder } from './Placeholder/Placeholder';
