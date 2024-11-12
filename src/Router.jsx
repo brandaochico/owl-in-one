@@ -1,11 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { ScrollToTop } from './scripts';
+
 import { MainLayout } from './layouts';
 import { LoginPage, HomeAluno, HomeProfessor, RegisterPage } from './pages';
 import { CreateCourse, UserProfile, CourseDetails, Course} from './pages';
 
 const Router = () => {
     return (
+      <>
+      <ScrollToTop />
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/register" element={<RegisterPage />} />
@@ -18,6 +22,7 @@ const Router = () => {
             <Route exact path="/curso/:id" element={<Course />} />
         </Route>
       </Routes>
+      </>
     );
 };
 
