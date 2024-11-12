@@ -6,6 +6,7 @@ export { default as FormLogin } from './FormLogin/FormLogin';
 export { default as FormRegister } from './FormRegister/FormRegister';
 export { default as Sidebar } from './Sidebar/Sidebar';
 export { default as Banner } from './Banner/Banner';
+export { default as Logo } from './Logo/Logo';
 
 // Funcionalidades
 export { default as CreateCourse } from './CreateCourse/CreateCourse';
