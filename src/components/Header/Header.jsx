@@ -1,4 +1,3 @@
-//React
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,19 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.js';
 import { signOut } from 'firebase/auth';
 
-//Estilos
+// Estilos
 import style from './Header.module.css';
 
 // Componentes
 import { SearchBar, Logo } from '../../components';
+import { MenuIcon } from '../../assets';
 
-const Header = () => {
+const Header = ({ onMenuClick }) => {
+  const handleMenuClick = (event) => {
+    event.stopPropagation();
+    if (onMenuClick) {
+      onMenuClick();
+    }
+  };
 
     return (
-        <div className={style.Header}>
-            <Logo />
-            <SearchBar />
-        </div>
+      <div className={style.Header}>
+        <MenuIcon onClick={handleMenuClick} />
+        <SearchBar />
+        <Logo />
+      </div>
     );
 };
 

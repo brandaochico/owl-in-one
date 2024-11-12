@@ -84,7 +84,7 @@ const HomeProfessor = () => {
                 <img src={logo} alt={course.name} className={style.courseImage} />
                 <h3>{course.name}</h3>
                 <p>{course.description}</p>
-                <p> <spam className={style.tags}>Tags: {course.tags.join(', ')} </spam></p>
+                <p> <span className={style.tags}>Tags: {course.tags.join(', ')} </span></p>
               </div>
             ))
           ) : (
@@ -92,7 +92,6 @@ const HomeProfessor = () => {
           )}
         </div>
       </section>
-
     </div>
   );
 };

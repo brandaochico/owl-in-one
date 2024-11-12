@@ -1,11 +1,14 @@
 .sidebar {
-  width: 300px;
+  position: fixed;
   height: 200vh;
   background-color: var(--pale-orange);
-  color: #ecf0f1;
+  color: var(--white);
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  z-index: 10;
+  width: 20%;
+  transition: display 0.3s ease;
 }
 
 .title {

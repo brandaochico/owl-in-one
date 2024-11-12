@@ -1,0 +1,11 @@
+.MenuIcon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .svgIcon {
+    pointer-events: none; /* Garante que o clique seja registrado na div, não no SVG */
+  }
+  

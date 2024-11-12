@@ -18,6 +18,16 @@ const MainLayout = () => {
     const db = getFirestore();
     const navigate = useNavigate();
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    useEffect(() => {
+        setIsSidebarOpen(false);
+    }, [navigate]);
+
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
@@ -54,16 +64,16 @@ const MainLayout = () => {
 
     return (
         <div className={styles.layout}>
+            {isSidebarOpen && (
             <Sidebar userType={userInfo?.userType} className={styles.sidebar} />
-            <div className={styles.mainContent}>
-                <Header className={styles.header} />
-
+            )}
+            <Header className={styles.header} onMenuClick={toggleSidebar} />
+            <div className={`${styles.mainContent} ${isSidebarOpen ? styles.dimmed : ''}`}>
                 <Content className={styles.content}>
                     <Outlet />
                 </Content>
-
-                <Footer className={styles.footer} />
             </div>
+            <Footer className={styles.footer} />  
         </div>
     );
 };
