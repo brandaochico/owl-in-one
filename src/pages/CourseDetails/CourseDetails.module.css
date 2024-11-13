@@ -1,21 +1,121 @@
 .courseDetailsContainer {
-    padding: 20px;
-    background-color: var(--white);
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .courseDetailsContainer h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .courseDetailsContainer p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .courseDetailsContainer .errorMessage {
-    color: red;
-  }
-  
+  max-width: 100rem;
+  max-height: fit-content;
+  margin: 8rem auto;
+  padding: 20px;
+  background-color: var(--white);
+  border: 1px solid var(--dark-blue);
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 38px;
+  color: var(--white);
+  margin: 1rem auto;
+}
+
+h2 {
+  font-size: 38px;
+  color: var(--white);
+  margin: 10px 0;
+}
+
+h3 {
+  color: var(--black);
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 16px;
+  color: var(--white);
+}
+
+.courseDescription {
+  margin: 1rem 0;
+}
+
+p strong {
+  color: var(--dark-blue);
+  font-size: 18px;
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+}
+
+.editButton, .saveButton, .addButton{
+  display: inline-block;
+  padding: 10px 100px;
+  margin-top: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editButton:hover, .saveButton:hover, .addButton:hover {
+  background-color: var(--blue);
+}
+
+.lessonContainer {
+  margin: 1rem 0;
+  padding: 20px;
+  background-color: var(--dark-blue);
+  border-radius: 8px; 
+}
+
+.lessonContainer button {
+  display: inline-block;
+  padding: 10px 100px;
+  margin-top: 15px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--orange);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.lessonContainer button:hover {
+  background-color: var(--dark-orange);
+}
+
+.lessonItem {
+  border: 1px solid var(--dark-blue);
+  background-color: var(--white);
+  margin: 1.5rem 0;
+  padding: 15px 25px;
+}
+
+.lessonItem p {
+  color: var(--black);
+  margin: 10px 0;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.editCourseContainer {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--pale-orange);
+  border-radius: 8px;
+}
+
+.lessonFormContainer {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--pale-orange);
+  border-radius: 8px;
+}

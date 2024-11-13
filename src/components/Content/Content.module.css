@@ -1,7 +1,8 @@
 .Content {
     color: var(--black);
     width: 100%;
-    height: 100%;
+    height: calc(300vh - 100rem);
     background: var(--white);
     margin-top: 6rem;
+    box-sizing: border-box;
 }
