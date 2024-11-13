@@ -7,6 +7,10 @@
     background-color: var(--white);
 }
 
+.CreateCourse p {
+    color: var(--dark-blue);
+}
+
 .CreateCourse h2 {
     text-align: center;
     color: var(--dark-blue);

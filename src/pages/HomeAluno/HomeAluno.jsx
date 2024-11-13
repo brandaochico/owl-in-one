@@ -93,7 +93,7 @@ const HomeAluno = () => {
               </div>
             ))
           ) : (
-            <p>Você ainda não criou nenhum curso.</p>
+            <p>Ainda não existe cursos na plataforma.</p>
           )}
         </div>
       </section>
