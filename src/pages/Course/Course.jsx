@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'; // Importando arrayRemove
+import { getAuth } from 'firebase/auth';
 
 // Estilos
 import style from './Course.module.css';
@@ -10,7 +11,11 @@ const Course = () => {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isFollowing, setIsFollowing] = useState(false);
   const db = getFirestore();
+  const auth = getAuth();
+
+  const user = auth.currentUser;
 
   useEffect(() => {
     const fetchCourseDetails = async () => {
@@ -33,6 +38,38 @@ const Course = () => {
     fetchCourseDetails();
   }, [id, db]);
 
+  useEffect(() => {
+    if (user && course) {
+      const isUserFollowing = course.followers?.includes(user.uid);
+      setIsFollowing(isUserFollowing);
+    }
+  }, [user, course]);
+
+  const handleFollowCourse = async () => {
+    if (!user) {
+      setError('Você precisa estar logado para seguir o curso.');
+      return;
+    }
+
+    try {
+      const courseDoc = doc(db, 'cursos', id);
+
+      if (isFollowing) {
+        await updateDoc(courseDoc, {
+          followers: arrayRemove(user.uid),
+        });
+        setIsFollowing(false);
+      } else {
+        await updateDoc(courseDoc, {
+          followers: arrayUnion(user.uid),
+        });
+        setIsFollowing(true);
+      }
+    } catch (err) {
+      setError('Erro ao seguir o curso: ' + err.message);
+    }
+  };
+
   if (loading) {
     return <p className={style.errorMessage}>Carregando...</p>;
   }
@@ -49,6 +86,11 @@ const Course = () => {
 
   return (
     <div className={style.courseDetailsContainer}>
+      {user && (
+        <button onClick={handleFollowCourse} className={style.followButton}>
+          {isFollowing ? 'Deixar de seguir' : 'Seguir curso'}
+        </button>
+      )}
       <div className={style.aboutCourse}>
         <h1>{course.name}</h1>
         <p className={style.courseDescription}>{course.description}</p>

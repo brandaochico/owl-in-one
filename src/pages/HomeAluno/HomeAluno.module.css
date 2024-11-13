@@ -2,6 +2,10 @@
   font-family: Arial, sans-serif; 
 }
 
+.homeAlunoContainer p {
+  color: var(--dark-blue);
+}
+
 .section {
   margin-top: 40px;
 }

@@ -9,6 +9,8 @@
     --dark-blue: #1d2c5a;
     --green: #2ada25;
     --black: #272727;
+    --red: rgb(221, 51, 51);
+    --dark-red : rgb(158, 38, 38);
 }
 
 * {
