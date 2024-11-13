@@ -10,14 +10,15 @@ import style from './HomeAluno.module.css';
 import logo from '../../assets/logo.jpg';
 
 // Componentes
-import { Banner } from '../../components';
+import { Banner, SearchBar } from '../../components';
 
 const HomeAluno = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [courses, setCourses] = useState([]); // Para todos os cursos
-  const [followedCourses, setFollowedCourses] = useState([]); // Para cursos seguidos
+  const [courses, setCourses] = useState([]);
+  const [followedCourses, setFollowedCourses] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const db = getFirestore();
   const navigate = useNavigate();
 
@@ -61,7 +62,6 @@ const HomeAluno = () => {
       try {
         const user = auth.currentUser;
         if (user) {
-          // Consulta os cursos que o usuário segue
           const coursesQuery = query(
             collection(db, 'cursos'),
             where('followers', 'array-contains', user.uid)
@@ -83,8 +83,16 @@ const HomeAluno = () => {
     fetchFollowedCourses();
   }, [db]);
 
-  const handleCourseClick = (courseId) => {
-    navigate(`/course-details/${courseId}`);
+  const filteredCourses = (coursesList) => {
+    return coursesList.filter((course) => {
+      return (
+        course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        course.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    });
   };
 
   if (loading) {
@@ -97,12 +105,15 @@ const HomeAluno = () => {
 
   return (
     <div className={style.homeAlunoContainer}>
+
+      <SearchBar onSearch={(queryText) => setSearchQuery(queryText)} />
       <Banner />
+
       <section className={style.section}>
         <h2>Cursos Seguidos</h2>
         <div className={style.courseContainer}>
           {followedCourses.length > 0 ? (
-            followedCourses.map((course) => (
+            filteredCourses(followedCourses).map((course) => (
               <div
                 key={course.id}
                 className={style.courseCard}
@@ -121,11 +132,12 @@ const HomeAluno = () => {
           )}
         </div>
       </section>
+
       <section className={style.section}>
         <h2>Cursos Disponíveis</h2>
         <div className={style.courseContainer}>
           {courses.length > 0 ? (
-            courses.map((course) => (
+            filteredCourses(courses).map((course) => (
               <div
                 key={course.id}
                 className={style.courseCard}
@@ -144,7 +156,6 @@ const HomeAluno = () => {
           )}
         </div>
       </section>
-
     </div>
   );
 };
