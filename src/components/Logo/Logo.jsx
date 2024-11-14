@@ -63,7 +63,6 @@ const Logo = () => {
   return (
     <div className={style.Logo} onClick={redirect}>
       <img src={logo} alt="Logo" />
-      {isLoading && <p>Carregando...</p>}
       {error && <p>{error}</p>}
     </div>
   );

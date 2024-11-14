@@ -6,7 +6,7 @@ body {
 .Header {
     background: var(--dark-blue);
     font-size: 0.75rem;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     color: var(--black);
     position: fixed;
     top: 0; 
@@ -16,7 +16,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5rem;
 }
 
 .Header img {

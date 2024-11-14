@@ -1,3 +1,12 @@
 .EditButton {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    background: var(--pale-orange);
+    color: var(--white);
+    font-weight: bold;
+    width: 15%;
 }

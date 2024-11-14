@@ -1,23 +1,24 @@
-// React
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // DB
 import { auth } from '../../firebase.js';
-import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 // Estilos
 import style from './HomeAluno.module.css';
 import logo from '../../assets/logo.jpg';
 
 // Componentes
-import { Banner } from '../../components';
+import { Banner, SearchBar } from '../../components';
 
 const HomeAluno = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [courses, setCourses] = useState([]);
+  const [followedCourses, setFollowedCourses] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const db = getFirestore();
   const navigate = useNavigate();
 
@@ -57,12 +58,41 @@ const HomeAluno = () => {
       }
     };
 
+    const fetchFollowedCourses = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const coursesQuery = query(
+            collection(db, 'cursos'),
+            where('followers', 'array-contains', user.uid)
+          );
+          const querySnapshot = await getDocs(coursesQuery);
+          const followedCoursesList = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setFollowedCourses(followedCoursesList);
+        }
+      } catch (err) {
+        setError('Erro ao carregar cursos seguidos: ' + err.message);
+      }
+    };
+
     fetchUserInfo();
     fetchCourses();
+    fetchFollowedCourses();
   }, [db]);
 
-  const handleCourseClick = (courseId) => {
-    navigate(`/course-details/${courseId}`);
+  const filteredCourses = (coursesList) => {
+    return coursesList.filter((course) => {
+      return (
+        course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        course.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    });
   };
 
   if (loading) {
@@ -75,12 +105,15 @@ const HomeAluno = () => {
 
   return (
     <div className={style.homeAlunoContainer}>
+
+      <SearchBar onSearch={(queryText) => setSearchQuery(queryText)} />
       <Banner />
+
       <section className={style.section}>
-        <h2>Cursos</h2>
+        <h2>Cursos Seguidos</h2>
         <div className={style.courseContainer}>
-          {courses.length > 0 ? (
-            courses.map(course => (
+          {followedCourses.length > 0 ? (
+            filteredCourses(followedCourses).map((course) => (
               <div
                 key={course.id}
                 className={style.courseCard}
@@ -89,11 +122,37 @@ const HomeAluno = () => {
                 <img src={logo} alt={course.name} className={style.courseImage} />
                 <h3>{course.name}</h3>
                 <p>{course.description}</p>
-                <p> <spam className={style.tags}>Tags: {course.tags.join(', ')} </spam></p>
+                <p>
+                  <span className={style.tags}>Tags: {course.tags.join(', ')}</span>
+                </p>
               </div>
             ))
           ) : (
-            <p>Você ainda não criou nenhum curso.</p>
+            <p>Você não está seguindo nenhum curso ainda.</p>
+          )}
+        </div>
+      </section>
+
+      <section className={style.section}>
+        <h2>Cursos Disponíveis</h2>
+        <div className={style.courseContainer}>
+          {courses.length > 0 ? (
+            filteredCourses(courses).map((course) => (
+              <div
+                key={course.id}
+                className={style.courseCard}
+                onClick={() => navigate(`/curso/${course.id}`)}
+              >
+                <img src={logo} alt={course.name} className={style.courseImage} />
+                <h3>{course.name}</h3>
+                <p>{course.description}</p>
+                <p>
+                  <span className={style.tags}>Tags: {course.tags.join(', ')}</span>
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>Ainda não existe cursos na plataforma.</p>
           )}
         </div>
       </section>

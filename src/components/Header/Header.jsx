@@ -9,7 +9,7 @@ import { signOut } from 'firebase/auth';
 import style from './Header.module.css';
 
 // Componentes
-import { SearchBar, Logo } from '../../components';
+import { Logo } from '../../components';
 import { MenuIcon } from '../../assets';
 
 const Header = ({ onMenuClick }) => {
@@ -23,7 +23,6 @@ const Header = ({ onMenuClick }) => {
     return (
       <div className={style.Header}>
         <MenuIcon onClick={handleMenuClick} />
-        <SearchBar />
         <Logo />
       </div>
     );

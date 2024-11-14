@@ -1,10 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { ScrollToTop } from './scripts';
-
 import { MainLayout } from './layouts';
 import { LoginPage, HomeAluno, HomeProfessor, RegisterPage } from './pages';
-import { CreateCourse, UserProfile, CourseDetails, Course} from './pages';
+import { CreateCourse, UserProfile, CourseDetails, Course, CourseForum } from './pages';
 
 const Router = () => {
     return (
@@ -20,6 +19,7 @@ const Router = () => {
             <Route exact path="/create-course" element={<CreateCourse />} />
             <Route exact path="/curso-details/:id" element={<CourseDetails />} />
             <Route exact path="/curso/:id" element={<Course />} />
+            <Route exact path="/curso/:courseId/forum" element={<CourseForum />} />
         </Route>
       </Routes>
       </>
