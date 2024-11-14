@@ -3,6 +3,6 @@
     width: 100%;
     height: calc(300vh - 100rem);
     background: var(--white);
-    margin-top: 6rem;
+    margin-top: 5rem;
     box-sizing: border-box;
 }

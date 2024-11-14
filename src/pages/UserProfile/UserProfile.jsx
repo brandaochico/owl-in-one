@@ -9,6 +9,9 @@ import { updateEmail, updatePassword } from 'firebase/auth';
 // Componentes
 import { EditButton } from '../../components';
 
+// Assets
+import { UserProfileIcon } from '../../assets';
+
 // Estilos
 import style from './UserProfile.module.css';
 
@@ -125,14 +128,19 @@ const UserProfile = () => {
             placeholder="Nova Senha (deixe em branco para não alterar)"
             className={style.input}
           />
-          <button onClick={handleSave} className={style.button}>Salvar</button>
-          <EditButton handleEditToggle={handleEditToggle} text="Cancelar"></EditButton> 
+          <div className={style.buttons}>
+            <button onClick={handleSave} className={style.saveButton}>Salvar</button>
+            <EditButton handleEditToggle={handleEditToggle} text="Cancelar"></EditButton> 
+          </div>
         </div>
       ) : (
         <div>
-          <EditButton handleEditToggle={handleEditToggle} text="Editar"></EditButton>
-          <p>Nome: {userInfo?.name}</p>
-          <p>Email: {auth.currentUser.email}</p>
+          <div className={style.container1}>
+            <UserProfileIcon />
+            <EditButton handleEditToggle={handleEditToggle} text="Editar"></EditButton>
+            <p>{userInfo?.name}</p>
+            <p>{auth.currentUser.email}</p>
+          </div>
         </div>
       )}
     </div>

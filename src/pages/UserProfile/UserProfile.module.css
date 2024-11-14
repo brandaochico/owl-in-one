@@ -14,6 +14,36 @@
     color: #333;
 }
 
+.userProfileContainer p {
+    text-align: center;
+    color: var(--black);
+    font-weight: bold;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.saveButton {
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    background: var(--pale-orange);
+    color: var(--white);
+    font-weight: bold;
+}
+
 .input {
     width: 100%;
     padding: 10px;
@@ -21,22 +51,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-}
-
-.button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff; /* Cor do botão */
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #0056b3; /* Cor do botão ao passar o mouse */
 }
 
 .error {

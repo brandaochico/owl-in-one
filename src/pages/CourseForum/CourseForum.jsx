@@ -129,7 +129,7 @@ const CourseForum = () => {
             topics.map((topic) => (
               <div key={topic.id} className={style.topicCard}>
                 <h3>{topic.title}</h3>
-                <p className={style.topicDate}>Data: {topic.createdAt?.toDate ? topic.createdAt.toDate().toLocaleDateString() : ''}</p>
+                <p style={{color: 'var(--white)'}}>Data: {topic.createdAt?.toDate ? topic.createdAt.toDate().toLocaleDateString() : ''}</p>
 
                 <div className={style.answersSection}>
                   <input
