@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import style from './CourseDetails.module.css';
 
 const CourseDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -103,6 +104,10 @@ const CourseDetails = () => {
     }
   };
 
+  const goToForum = () => {
+    navigate(`/curso/${id}/forum`);
+  };
+
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -167,48 +172,51 @@ const CourseDetails = () => {
             <button className={style.editButton} onClick={handleEditToggle}>
               Editar
             </button>
+            <button className={style.forumButton} onClick={goToForum}>
+              Ir para o Fórum
+            </button>
           </>
         )}
       </div>
-      
+
       <div className={style.lessonContainer}>
-      <h2>Aulas</h2>
-      {course.lessons && course.lessons.map((lesson, index) => (
-        <div key={index} className={style.lessonItem}>
-          {editingLessonIndex === index ? (
-            <>
-              <input
-                type="text"
-                name="title"
-                value={editingLesson.title}
-                onChange={handleEditLessonChange}
-                placeholder="Título da Aula"
-              />
-              <textarea
-                name="content"
-                value={editingLesson.content}
-                onChange={handleEditLessonChange}
-                placeholder="Descrição da Aula"
-              />
-              <input
-                type="text"
-                name="videoLink"
-                value={editingLesson.videoLink}
-                onChange={handleEditLessonChange}
-                placeholder="Link para o Vídeo"
-              />
-              <button onClick={saveLessonEdit}>Salvar Alterações</button>
-            </>
-          ) : (
-            <>
-              <h3>{lesson.title}</h3>
-              <p>{lesson.content}</p>
-              <p><strong>Link para vídeo:</strong> {lesson.videoLink}</p>
-              <button onClick={() => startEditLesson(index)}>Editar</button>
-            </>
-          )}
-        </div>
-      ))}
+        <h2>Aulas</h2>
+        {course.lessons && course.lessons.map((lesson, index) => (
+          <div key={index} className={style.lessonItem}>
+            {editingLessonIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  name="title"
+                  value={editingLesson.title}
+                  onChange={handleEditLessonChange}
+                  placeholder="Título da Aula"
+                />
+                <textarea
+                  name="content"
+                  value={editingLesson.content}
+                  onChange={handleEditLessonChange}
+                  placeholder="Descrição da Aula"
+                />
+                <input
+                  type="text"
+                  name="videoLink"
+                  value={editingLesson.videoLink}
+                  onChange={handleEditLessonChange}
+                  placeholder="Link para o Vídeo"
+                />
+                <button onClick={saveLessonEdit}>Salvar Alterações</button>
+              </>
+            ) : (
+              <>
+                <h3>{lesson.title}</h3>
+                <p>{lesson.content}</p>
+                <p><strong>Link para vídeo:</strong> {lesson.videoLink}</p>
+                <button onClick={() => startEditLesson(index)}>Editar</button>
+              </>
+            )}
+          </div>
+        ))}
       </div>
 
       <div className={style.lessonFormContainer}>

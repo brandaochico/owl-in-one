@@ -119,3 +119,20 @@ input, textarea {
   background-color: var(--pale-orange);
   border-radius: 8px;
 }
+
+.forumButton {
+  display: inline-block;
+  padding: 10px 100px;
+  margin: 10px 10px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.forumButton:hover {
+  background-color: var(--blue);
+}

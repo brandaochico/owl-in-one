@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'; // Importando arrayRemove
+import { useParams, useNavigate } from 'react-router-dom';
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 // Estilos
@@ -8,6 +8,7 @@ import style from './Course.module.css';
 
 const Course = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -70,6 +71,10 @@ const Course = () => {
     }
   };
 
+  const navigateToForum = () => {
+    navigate(`/curso/${id}/forum`);
+  };
+
   if (loading) {
     return <p className={style.errorMessage}>Carregando...</p>;
   }
@@ -91,6 +96,11 @@ const Course = () => {
           {isFollowing ? 'Deixar de seguir' : 'Seguir curso'}
         </button>
       )}
+
+      <button onClick={navigateToForum} className={style.forumButton}>
+        Ir para o Fórum
+      </button>
+
       <div className={style.aboutCourse}>
         <h1>{course.name}</h1>
         <p className={style.courseDescription}>{course.description}</p>
