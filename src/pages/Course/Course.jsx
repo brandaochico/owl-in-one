@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-
-// Estilos
 import style from './Course.module.css';
 
 const Course = () => {
@@ -13,6 +11,9 @@ const Course = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isFollowing, setIsFollowing] = useState(false);
+  const [userRating, setUserRating] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [newRating, setNewRating] = useState('');
   const db = getFirestore();
   const auth = getAuth();
 
@@ -43,6 +44,11 @@ const Course = () => {
     if (user && course) {
       const isUserFollowing = course.followers?.includes(user.uid);
       setIsFollowing(isUserFollowing);
+
+      const userVote = course.ratings?.find((rating) => rating.uid === user.uid);
+      if (userVote) {
+        setUserRating(userVote.value);
+      }
     }
   }, [user, course]);
 
@@ -71,8 +77,50 @@ const Course = () => {
     }
   };
 
+  const handleRatingChange = async (value) => {
+    if (!user) {
+      setError('Você precisa estar logado para avaliar o curso.');
+      return;
+    }
+
+    try {
+      const courseDoc = doc(db, 'cursos', id);
+
+      const updatedRatings = [
+        ...(course.ratings?.filter((rating) => rating.uid !== user.uid) || []),
+        { uid: user.uid, value: parseInt(value, 10) },
+      ];
+
+      const totalRatings = updatedRatings.length;
+      const averageRating = updatedRatings.reduce((acc, curr) => acc + curr.value, 0) / totalRatings;
+
+      await updateDoc(courseDoc, {
+        ratings: updatedRatings,
+        totalRatings,
+        averageRating,
+      });
+
+      setCourse((prev) => ({
+        ...prev,
+        ratings: updatedRatings,
+        totalRatings,
+        averageRating,
+      }));
+      setUserRating(value);
+      setShowRatingModal(false);
+    } catch (err) {
+      setError('Erro ao atualizar sua avaliação: ' + err.message);
+    }
+  };
+
   const navigateToForum = () => {
     navigate(`/curso/${id}/forum`);
+  };
+
+  const getYouTubeVideoId = (url) => {
+    const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
   };
 
   if (loading) {
@@ -82,12 +130,6 @@ const Course = () => {
   if (error) {
     return <p className={style.errorMessage}>{error}</p>;
   }
-
-  const getYouTubeVideoId = (url) => {
-    const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  };
 
   return (
     <div className={style.courseDetailsContainer}>
@@ -108,7 +150,30 @@ const Course = () => {
         <div className={style.courseInfo}>
           <p><strong>Duração:</strong> {course.duration} horas</p>
           <p><strong>Tags:</strong> {course.tags.join(', ')}</p>
+          <p>
+            <strong>Avaliação:</strong>{' '}
+            {course.averageRating ? (
+              <>
+                {course.averageRating.toFixed(1)} estrela(s) ({course.totalRatings} votos)
+              </>
+            ) : (
+              'Ainda não avaliado'
+            )}
+          </p>
         </div>
+
+        {user && (
+          <div className={style.ratingSection}>
+            <p>
+              {userRating
+                ? `Sua avaliação: ${userRating} estrela(s)`
+                : 'Você ainda não avaliou este curso.'}
+            </p>
+            <button onClick={() => setShowRatingModal(true)} className={style.ratingButton}>
+              {userRating ? 'Alterar avaliação' : 'Avaliar curso'}
+            </button>
+          </div>
+        )}
       </div>
 
       <div className={style.lessonsContainer}>
@@ -139,6 +204,34 @@ const Course = () => {
           <p>Este curso não possui aulas cadastradas.</p>
         )}
       </div>
+
+      {showRatingModal && (
+        <div className={style.modalBackdrop}>
+          <div className={style.modal}>
+            <h2>Avaliar Curso</h2>
+            <input
+              type="number"
+              value={newRating}
+              onChange={(e) => setNewRating(e.target.value)}
+              min="1"
+              max="5"
+              placeholder="Digite de 1 a 5"
+            />
+            <button
+              onClick={() => {
+                if (newRating >= 1 && newRating <= 5) {
+                  handleRatingChange(newRating);
+                } else {
+                  alert('Por favor, insira uma nota entre 1 e 5.');
+                }
+              }}
+            >
+              Submeter Avaliação
+            </button>
+            <button onClick={() => setShowRatingModal(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -73,7 +73,7 @@ const MainLayout = () => {
                     <Outlet />
                 </Content>
             </div>
-            <Footer className={styles.footer} />  
+            
         </div>
     );
 };

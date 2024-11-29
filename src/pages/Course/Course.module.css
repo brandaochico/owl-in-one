@@ -1,3 +1,4 @@
+/* Container principal */
 .courseDetailsContainer {
   max-width: 110rem;
   width: 100%;
@@ -6,28 +7,38 @@
   background-color: var(--white);
   border-radius: 8px;
   border: 1px solid var(--dark-blue);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 2rem;
 }
 
+/* Sobre o curso */
 .aboutCourse {
-  background-color: var(--pale-orange);
+  background: linear-gradient(135deg, var(--dark-blue), var(--blue)); 
   padding: 20px 35px;
   border-radius: 10px;
   margin-bottom: 2rem;
-}
-
-.courseDetailsContainer h1 {
-  font-size: 38px;
-  color: var(--white);
-  margin-bottom: 1.5rem;
   text-align: center;
-  padding: 0.5rem;
-  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Título do curso - Azul mais escuro */
+.courseDetailsContainer h1 {
+  font-size: 42px;
+  color: var(--white); 
+  margin-bottom: 1.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--dark-blue), var(--dark-blue)); /* Azul mais escuro */
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Descrição do curso */
 .courseDescription {
   font-size: 18px;
-  color: var(--white);
+  color: var(--white); 
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -36,26 +47,29 @@
   font-size: 16px;
   display: flex;
   justify-content: space-evenly;
-  margin: 5px 0;
+  margin: 1.5rem 0;
 }
 
 .courseInfo p {
-  color: var(--white);
+  color: var(--white); 
+  font-weight: bold;
 }
 
 .lessonsContainer {
   margin-top: 1rem;
-  background-color: var(--dark-blue);
+  background-color: #e16e1e; 
   border-radius: 15px;
-  padding: 10px 35px;
+  padding: 20px 35px;
 }
 
 .lessonsContainer h2 {
-  font-size: 38px;
+  font-size: 36px;
   color: var(--white);
-  margin: 2rem auto;
+  margin-bottom: 2rem;
   text-align: center;
-  border-radius: 15px;
+  background: linear-gradient(135deg, var(--dark-blue), var(--blue)); /* Azul mais escuro */
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
 }
 
 .lessonItem {
@@ -64,83 +78,137 @@
   margin-bottom: 1.5rem;
   border-radius: 8px;
   border: 1px solid var(--dark-blue);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.videoContainer {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.videoContainer iframe {
+  width: 100%;
+  max-width: 700px;
+  height: 315px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .lessonContent {
-  width: 48%;
+  width: 100%;
   text-align: center;
-  justify-items: center;
 }
 
 .lessonItem h3 {
   font-size: 28px;
-  color: var(--black);
+  color: var(--dark-blue); 
   margin-bottom: 1rem;
 }
 
 .lessonItem p {
   font-size: 16px;
-  color: var(--dark);
-  margin: auto auto;
-  text-align: left;
+  color: var(--dark); 
+  margin: 0.5rem auto;
 }
 
-.videoContainer {
-  width: 48%;
-  margin-left: 2%;
-  text-align: center;
-}
-
-.videoContainer iframe {
-  width: 100%;
-  height: 315px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.errorMessage {
-  color: red;
-  text-align: center;
-  font-size: 18px;
-  margin-top: 2rem;
+.followButton,
+.forumButton,
+.ratingButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--white); 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
 }
 
 .followButton {
-  display: inline-block;
-  padding: 10px 100px;
-  margin: 10px 0;
-  font-size: 16px;
-  color: var(--white);
-  background-color: var(--red);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
+  background-color: var(--red); 
 }
 
-.followButton:hover{
-  background-color: var(--dark-red);
+.followButton:hover {
+  background-color: var(--dark-red); 
 }
 
 .forumButton {
-  display: inline-block;
-  padding: 10px 100px;
-  margin: 10px 10px;
-  font-size: 16px;
-  color: var(--white);
-  background-color: var(--dark-blue);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
+  background-color: var(--dark-blue); 
 }
 
 .forumButton:hover {
-  background-color: var(--blue);
+  background-color: var(--blue); 
 }
 
+.ratingButton {
+  background-color: var(--orange); 
+}
 
+.ratingButton:hover {
+  background-color: var(--pale-orange); 
+}
+
+.ratingContainer {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ratingContainer p {
+  font-size: 18px;
+  color: var(--dark); 
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  text-align: center;
+}
+
+.modal h2 {
+  margin-bottom: 1rem;
+  color: var(--dark-blue); 
+}
+
+.modal input[type='number'] {
+  width: 100%;
+  padding: 10px;
+  margin: 1rem 0;
+  border: 1px solid var(--dark-blue);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal button {
+  padding: 10px 20px;
+  background-color: var(--dark-blue);
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: var(--blue); 
+}
