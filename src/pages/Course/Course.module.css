@@ -279,3 +279,122 @@
 .recommendedCourseItem button:hover {
   background-color: var(--dark-orange);
 }
+
+/* Estilo do botão de Emitir Certificado */
+.certificadoButton {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.certificadoButton:hover {
+  background-color: #45a049;
+}
+
+/* Estilo do Certificado */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.modal .btnClose {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.modal .btnClose:hover {
+  background-color: #e53935;
+}
+
+/* Estilo do Certificado Gerado */
+.certificadoContainer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+.certificadoContainer h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #4CAF50;
+}
+
+.certificadoContainer p {
+  font-size: 18px;
+  margin: 15px 0;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.certificadoContainer .certificadoDate {
+  font-size: 16px;
+  font-style: italic;
+  color: #777;
+}
+
+.certificadoContainer .logo {
+  margin-top: 30px;
+  width: 100px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.certificadoButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.certificadoButton:hover {
+  background-color: #45a049;
+}
+
+

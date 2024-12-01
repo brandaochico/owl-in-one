@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc, getDocs, collection, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import style from './Course.module.css';
 
 const Course = () => {
@@ -151,6 +153,65 @@ const Course = () => {
     navigate(`/curso/${id}/forum`);
   };
 
+  const handleCertificate = () => {
+    if (!user) {
+      alert('Você precisa estar logado para emitir o certificado.');
+      return;
+    }
+  
+    const doc = new jsPDF();
+  
+    // Cabeçalho
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.text('Owl in One', 105, 20, { align: 'center' });
+  
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(18);
+    doc.text(`Certificado de Conclusão do Curso`, 105, 35, { align: 'center' });
+  
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(16);
+    doc.text(`"${course.name}"`, 105, 45, { align: 'center' });
+  
+    // Texto principal
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(14);
+    const courseDuration = course.duration || 'indefinida';
+    const certificateText = `Certificamos que ${user.displayName || 'Usuário'} concluiu com sucesso o curso "${course.name}", com duração de ${courseDuration} hora(s), ministrado na plataforma Owl in One.`;
+    doc.text(certificateText, 105, 60, { align: 'center', maxWidth: 180 });
+  
+    // Conteúdo das aulas
+    doc.autoTable({
+      head: [['Título da Aula', 'Descrição']],
+      body: course.lessons.map((lesson) => [lesson.title, lesson.content]),
+      startY: 80,
+      theme: 'grid',
+      styles: {
+        halign: 'center',
+      },
+      headStyles: {
+        fillColor: [0, 123, 255], 
+        textColor: 255,
+        fontStyle: 'bold',
+      },
+      alternateRowStyles: {
+        fillColor: [240, 240, 240], 
+      },
+    });
+  
+    // Rodapé
+    const pageHeight = doc.internal.pageSize.height;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.text(`Data de emissão: ${new Date().toLocaleDateString()}`, 20, pageHeight - 20);
+    doc.text('Emitido por Owl in One', 105, pageHeight - 20, { align: 'center' });
+  
+    // Salvar o PDF
+    doc.save(`certificado_${course.name}.pdf`);
+  };
+  
+
   const getYouTubeVideoId = (url) => {
     const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regex);
@@ -177,6 +238,10 @@ const Course = () => {
         Ir para o Fórum
       </button>
 
+      <button onClick={handleCertificate} className={style.certificateButton}>
+        Emitir Certificado
+      </button>
+
       <div className={style.aboutCourse}>
         <h1>{course.name}</h1>
         <p className={style.courseDescription}>{course.description}</p>
@@ -195,19 +260,6 @@ const Course = () => {
             )}
           </p>
         </div>
-
-        {user && (
-          <div className={style.ratingSection}>
-            <p>
-              {userRating
-                ? `Sua avaliação: ${userRating} estrela(s)`
-                : 'Você ainda não avaliou este curso.'}
-            </p>
-            <button onClick={() => setShowRatingModal(true)} className={style.ratingButton}>
-              {userRating ? 'Alterar avaliação' : 'Avaliar curso'}
-            </button>
-          </div>
-        )}
       </div>
 
       <div className={style.lessonsContainer}>
@@ -235,54 +287,26 @@ const Course = () => {
             </div>
           ))
         ) : (
-          <p>Este curso não possui aulas cadastradas.</p>
+          <p>Este curso não possui aulas cadastradas ainda.</p>
         )}
       </div>
 
-      <div className="recommendedCoursesContainer">
+      <div className={style.recommendedCoursesContainer}>
         <h2>Cursos Recomendados</h2>
-        {recommendedCourses.length > 0 ? (
+        {recommendedCourses && recommendedCourses.length > 0 ? (
           recommendedCourses.map((recommendedCourse) => (
-            <div key={recommendedCourse.id} className="recommendedCourseItem">
+            <div key={recommendedCourse.id} className={style.recommendedCourseItem}>
               <h3>{recommendedCourse.name}</h3>
               <p>{recommendedCourse.description}</p>
               <button onClick={() => navigate(`/curso/${recommendedCourse.id}`)}>
-                Ver Curso
+                Ver curso
               </button>
             </div>
           ))
         ) : (
-          <p>Não há cursos recomendados.</p>
+          <p>Não há cursos recomendados no momento.</p>
         )}
       </div>
-
-      {showRatingModal && (
-        <div className={style.modalBackdrop}>
-          <div className={style.modal}>
-            <h2>Avaliar Curso</h2>
-            <input
-              type="number"
-              value={newRating}
-              onChange={(e) => setNewRating(e.target.value)}
-              min="1"
-              max="5"
-              placeholder="Digite de 1 a 5"
-            />
-            <button
-              onClick={() => {
-                if (newRating >= 1 && newRating <= 5) {
-                  handleRatingChange(newRating);
-                } else {
-                  alert('Por favor, insira uma nota entre 1 e 5.');
-                }
-              }}
-            >
-              Submeter Avaliação
-            </button>
-            <button onClick={() => setShowRatingModal(false)}>Fechar</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
