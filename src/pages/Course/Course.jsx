@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, getDocs, collection, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import style from './Course.module.css';
 
@@ -14,6 +14,7 @@ const Course = () => {
   const [userRating, setUserRating] = useState(null);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [newRating, setNewRating] = useState('');
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
   const db = getFirestore();
   const auth = getAuth();
 
@@ -39,6 +40,34 @@ const Course = () => {
 
     fetchCourseDetails();
   }, [id, db]);
+
+  useEffect(() => {
+    const fetchRecommendedCourses = async () => {
+      try {
+        const coursesSnap = await getDocs(collection(db, 'cursos'));
+        const courses = coursesSnap.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+
+        const filteredCourses = courses.filter((recommendedCourse) => {
+          if (!course?.tags) return false;
+          return recommendedCourse.tags?.some((tag) => course.tags.includes(tag));
+        });
+
+        const sortedCourses = filteredCourses.sort((a, b) => {
+          return (b.averageRating || 0) - (a.averageRating || 0);
+        });
+
+        setRecommendedCourses(sortedCourses.filter((recommendedCourse) => recommendedCourse.id !== id));
+      } catch (err) {
+        setError('Erro ao carregar cursos recomendados: ' + err.message);
+      }
+    };
+
+    if (id) {
+      fetchRecommendedCourses();
+    }
+  }, [id, db, course]);
 
   useEffect(() => {
     if (user && course) {
@@ -80,6 +109,11 @@ const Course = () => {
   const handleRatingChange = async (value) => {
     if (!user) {
       setError('Você precisa estar logado para avaliar o curso.');
+      return;
+    }
+
+    if (value < 1 || value > 5) {
+      alert('Por favor, insira uma nota entre 1 e 5.');
       return;
     }
 
@@ -202,6 +236,23 @@ const Course = () => {
           ))
         ) : (
           <p>Este curso não possui aulas cadastradas.</p>
+        )}
+      </div>
+
+      <div className="recommendedCoursesContainer">
+        <h2>Cursos Recomendados</h2>
+        {recommendedCourses.length > 0 ? (
+          recommendedCourses.map((recommendedCourse) => (
+            <div key={recommendedCourse.id} className="recommendedCourseItem">
+              <h3>{recommendedCourse.name}</h3>
+              <p>{recommendedCourse.description}</p>
+              <button onClick={() => navigate(`/curso/${recommendedCourse.id}`)}>
+                Ver Curso
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Não há cursos recomendados.</p>
         )}
       </div>
 

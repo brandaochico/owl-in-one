@@ -1,4 +1,3 @@
-/* Container principal */
 .courseDetailsContainer {
   max-width: 110rem;
   width: 100%;
@@ -14,9 +13,8 @@
   padding-bottom: 2rem;
 }
 
-/* Sobre o curso */
 .aboutCourse {
-  background: linear-gradient(135deg, var(--dark-blue), var(--blue)); 
+  background: linear-gradient(135deg, var(--dark-blue), var(--blue));
   padding: 20px 35px;
   border-radius: 10px;
   margin-bottom: 2rem;
@@ -24,21 +22,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Título do curso - Azul mais escuro */
 .courseDetailsContainer h1 {
   font-size: 42px;
-  color: var(--white); 
+  color: var(--white);
   margin-bottom: 1.5rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--dark-blue), var(--dark-blue)); /* Azul mais escuro */
+  background: linear-gradient(135deg, var(--dark-blue), var(--dark-blue));
   border-radius: 10px;
   display: inline-block;
 }
 
-/* Descrição do curso */
 .courseDescription {
   font-size: 18px;
-  color: var(--white); 
+  color: var(--white);
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -51,13 +47,13 @@
 }
 
 .courseInfo p {
-  color: var(--white); 
+  color: var(--white);
   font-weight: bold;
 }
 
 .lessonsContainer {
   margin-top: 1rem;
-  background-color: #e16e1e; 
+  background-color: #e16e1e;
   border-radius: 15px;
   padding: 20px 35px;
 }
@@ -67,7 +63,7 @@
   color: var(--white);
   margin-bottom: 2rem;
   text-align: center;
-  background: linear-gradient(135deg, var(--dark-blue), var(--blue)); /* Azul mais escuro */
+  background: linear-gradient(135deg, var(--dark-blue), var(--blue));
   border-radius: 10px;
   padding: 0.5rem 1rem;
 }
@@ -105,13 +101,13 @@
 
 .lessonItem h3 {
   font-size: 28px;
-  color: var(--dark-blue); 
+  color: var(--dark-blue);
   margin-bottom: 1rem;
 }
 
 .lessonItem p {
   font-size: 16px;
-  color: var(--dark); 
+  color: var(--dark);
   margin: 0.5rem auto;
 }
 
@@ -121,7 +117,7 @@
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  color: var(--white); 
+  color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -130,38 +126,27 @@
 }
 
 .followButton {
-  background-color: var(--red); 
+  background-color: var(--red);
 }
 
 .followButton:hover {
-  background-color: var(--dark-red); 
+  background-color: var(--dark-red);
 }
 
 .forumButton {
-  background-color: var(--dark-blue); 
+  background-color: var(--dark-blue);
 }
 
 .forumButton:hover {
-  background-color: var(--blue); 
+  background-color: var(--blue);
 }
 
 .ratingButton {
-  background-color: var(--orange); 
+  background-color: var(--orange);
 }
 
 .ratingButton:hover {
-  background-color: var(--pale-orange); 
-}
-
-.ratingContainer {
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.ratingContainer p {
-  font-size: 18px;
-  color: var(--dark); 
+  background-color: var(--pale-orange);
 }
 
 .modalBackdrop {
@@ -188,7 +173,7 @@
 
 .modal h2 {
   margin-bottom: 1rem;
-  color: var(--dark-blue); 
+  color: var(--dark-blue);
 }
 
 .modal input[type='number'] {
@@ -210,5 +195,87 @@
 }
 
 .modal button:hover {
-  background-color: var(--blue); 
+  background-color: var(--blue);
+}
+
+.recommendedCoursesContainer {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  border: 1px solid var(--dark-blue);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recommendedCoursesContainer h2 {
+  font-size: 36px;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--dark-blue), var(--blue));
+  border-radius: 10px;
+}
+
+.recommendedCourseItem {
+  background-color: var(--white);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--dark-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s;
+}
+
+.recommendedCourseItem:hover {
+  transform: translateY(-5px);
+}
+
+.recommendedCourseItem h3 {
+  font-size: 28px;
+  color: var(--dark-blue);
+  margin-bottom: 1rem;
+}
+
+.recommendedCourseItem p {
+  font-size: 16px;
+  color: var(--dark);
+  margin: 0.5rem 0;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.recommendedCourseItem .courseInfo {
+  margin-top: 1rem;
+  font-size: 14px;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+.recommendedCourseItem .courseInfo p {
+  margin-bottom: 0.5rem;
+}
+
+.recommendedCourseItem .courseInfo strong {
+  font-weight: bold;
+}
+
+.recommendedCourseItem button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--orange);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.recommendedCourseItem button:hover {
+  background-color: var(--dark-orange);
 }
