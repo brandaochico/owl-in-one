@@ -53,7 +53,7 @@
 
 .lessonsContainer {
   margin-top: 1rem;
-  background-color: #e16e1e;
+  background-color: linear-gradient(135deg, var(--dark-blue), var(--blue));
   border-radius: 15px;
   padding: 20px 35px;
 }
@@ -280,7 +280,6 @@
   background-color: var(--dark-orange);
 }
 
-/* Estilo do botão de Emitir Certificado */
 .certificadoButton {
   background-color: #4CAF50; /* Verde */
   color: white;
@@ -297,7 +296,6 @@
   background-color: #45a049;
 }
 
-/* Estilo do Certificado */
 .modalBackdrop {
   position: fixed;
   top: 0;

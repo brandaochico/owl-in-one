@@ -238,7 +238,7 @@ const Course = () => {
         Ir para o Fórum
       </button>
 
-      <button onClick={handleCertificate} className={style.certificateButton}>
+      <button onClick={handleCertificate} className={style.forumButton}>
         Emitir Certificado
       </button>
 
