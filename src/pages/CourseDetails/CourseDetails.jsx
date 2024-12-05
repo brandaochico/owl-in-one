@@ -180,7 +180,6 @@ const CourseDetails = () => {
       </div>
 
       <div className={style.lessonContainer}>
-        <h2>Aulas</h2>
         {course.lessons && course.lessons.map((lesson, index) => (
           <div key={index} className={style.lessonItem}>
             {editingLessonIndex === index ? (

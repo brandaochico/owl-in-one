@@ -1,48 +1,57 @@
 .forumContainer {
   padding: 20px;
   max-width: 90rem;
-  margin: 0 auto;
+  margin: 4rem auto;
   font-family: 'Arial', sans-serif;
   background-color: var(--white);
   border-radius: 8px;
   border: 1px solid var(--dark-blue);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .forumContainer h1 {
   text-align: center;
   color: var(--dark-blue);
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
 .newTopicSection {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .newTopicInput {
-  width: 75%;
+  flex: 1;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid var(--dark-blue);
   border-radius: 4px;
+  background-color: var(--white);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newTopicInput:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 0, 255, 0.2);
 }
 
 .addTopicButton {
-  width: 20%;
-  padding: 1px 10px;
+  padding: 10px 20px;
   font-size: 1rem;
-  background-color: var(--dark-blue);
+  background-color: var(--blue);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .addTopicButton:hover {
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
 }
 
 .topicList {
@@ -50,11 +59,11 @@
 }
 
 .topicCard {
-  background-color: var(--dark-blue);
+  background: linear-gradient(135deg, var(--blue), var(--dark-blue));
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .topicCard h3 {
@@ -64,8 +73,8 @@
 }
 
 .topicCard p {
-  font-size: 0.9rem;
-  color: var(--black);
+  font-size: 1rem;
+  color: var(--white);
   margin-bottom: 10px;
 }
 
@@ -74,49 +83,59 @@
 }
 
 .answerInput {
-  width: 80%;
+  width: calc(100% - 120px);
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid var(--black);
+  border: 1px solid var(--dark-blue);
   border-radius: 4px;
-  margin-right: 10px;
+  background-color: var(--white);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.answerInput:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 0, 255, 0.2);
 }
 
 .addAnswerButton {
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 1rem;
-  background-color: var(--pale-orange);
+  background-color: var(--blue);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .addAnswerButton:hover {
-  background-color: var(--dark-orange );
+  background-color: var(--dark-blue);
 }
 
 .answersList {
   margin-top: 20px;
-  color: var(--black);
 }
 
 .answerItem {
-  border: 1px solid var(--black);
+  border: 1px solid var(--dark-blue);
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 10px;
   background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .answerItem p {
   margin: 5px 0;
+  font-size: 1rem;
   color: var(--black);
 }
 
 .answerItem em {
   font-size: 0.85rem;
-  color: var(--black);
+  color: var(--dark-blue);
 }
 
 .forumContainer p {
@@ -126,8 +145,11 @@
 }
 
 .instructorBadge {
-  background-color: rgb(185, 159, 7);
+  background-color: var(--blue);
   color: white;
   padding: 3px 8px;
   border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
