@@ -110,7 +110,7 @@ const HomeAluno = () => {
       <Banner />
 
       <section className={style.section}>
-        <h2>Cursos Seguidos</h2>
+        <h2>Inscrições</h2>
         <div className={style.courseContainer}>
           {followedCourses.length > 0 ? (
             filteredCourses(followedCourses).map((course) => (
