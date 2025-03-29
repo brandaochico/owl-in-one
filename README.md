@@ -1,10 +1,10 @@
-# React + Vite
+# Owl in One
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sumary
+Owl in One is a learning platform, just like Udemy, built from the ground up using React + Vite.
+It was created for a project at University, focusing on the engineering aspect with the use of agile methods, dividing the project into three sprints.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-:)
+## Documentation
+As a engineering focused project, there was a documentation produced to specify the functionalities of the website.
+You can check it out here: https://drive.google.com/drive/u/2/folders/1OI4IbcOPcrx0kwqL7S7QJzcGm0gMXeL_
